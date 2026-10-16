@@ -1,0 +1,19 @@
+BioLearn Upgrade Report — Difficulty, Coverage and Scenario Questions
+
+Project question bank: 100 topics, 1000 topic questions (10 per topic).
+Supplemental original exam-style scenario questions: 30 (10 JAMB, 10 WAEC, 10 NECO).
+Difficulty labels added to all topic-bank questions: Easy, Medium, Challenging (automated first-pass estimates).
+Senior-secondary pool difficulty distribution: Easy=117, Medium=91, Challenging=112.
+New UI: difficulty selector; current attempt topic coverage; difficulty mix; per-question difficulty label.
+Track selection: senior-secondary bank plus track-specific supplemental questions; Mixed includes all levels and supplemental items.
+PWA service-worker cache: biolearn-v6.
+
+Validation: see final test run after ZIP generation.
+Content caveat: difficulty tags are heuristic and should be reviewed by a Biology teacher; practice topic weighting is not an official JAMB/WAEC/NECO blueprint. The supplemental questions are original practice items, not official past questions.
+
+Automated validation completed:
+- `node --check` passed for app.js, question-bank.js and service-worker.js.
+- Topic-bank structure passed: 100 topics, 1,000 questions, 10 questions per topic, unique question IDs, four distinct options, correct answer included, explanations and difficulty tags present.
+- Supplemental scenario bank passed: 30 questions, 10 per track, unique IDs, four distinct options and valid answer/explanation fields.
+- ZIP integrity check performed after packaging.
+- A full browser click-through could not be completed because the headless browser did not finish loading in this environment.

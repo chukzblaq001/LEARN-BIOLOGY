@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101c3a">
+  <meta name="description" content="BioLearn — learn Biology from JSS1 to University 400 Level with notes, topic practice and CBT quizzes.">
+  <title>BioLearn | Biology Learning Hub</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/icon-192.png">
+  <link rel="apple-touch-icon" href="assets/icon-192.png">
+  <link rel="manifest" href="manifest.json">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="BioLearn home"><span class="brand-mark">B</span><span>BioLearn<small>LEARN • PRACTISE • GROW</small></span></a>
+    <button id="menuBtn" class="menu-btn" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+    <nav id="mainNav">
+      <a href="#learn">Learn</a><a href="#practice">Practice</a><a href="#progress">My progress</a><a href="admin.html">Admin tools</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <span class="eyebrow">YOUR BIOLOGY JOURNEY STARTS HERE</span>
+        <h1>Understand life.<br><span>One topic at a time.</span></h1>
+        <p>Friendly notes, focused practice and 40-question quizzes — from junior secondary to university level.</p>
+        <div class="hero-actions"><a class="btn primary" href="#learn">Start learning <span>→</span></a><button class="btn ghost" id="startQuizHero">Take a 40-question quiz</button></div>
+        <div class="hero-stats"><div><b id="topicCount">100</b><span>Biology topics</span></div><div><b>10</b><span>questions per topic</span></div><div><b>40</b><span>questions per quiz</span></div></div>
+      </div>
+      <div class="hero-art" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="cell"><span>✦</span><i></i><i></i><i></i><i></i></div><div class="floating-card card-a">🧬 <span>Explore life</span></div><div class="floating-card card-b">✓ <span>Track progress</span></div></div>
+    </section>
+
+    <section class="section level-section">
+      <div class="section-heading"><div><span class="eyebrow">PICK UP WHERE YOU ARE</span><h2>Choose your learning level</h2></div><p>Change this any time. Topics shown below are matched to your selection.</p></div>
+      <div id="levelGrid" class="level-grid"></div>
+    </section>
+
+    <section id="learn" class="section">
+      <div class="section-heading"><div><span class="eyebrow">LEARN AT YOUR PACE</span><h2 id="topicsHeading">Biology topics</h2></div><label class="search-box"><span>⌕</span><input id="topicSearch" type="search" placeholder="Search topics..." aria-label="Search topics"></label></div>
+      <div id="topicGrid" class="topic-grid"></div>
+      <p id="emptyTopics" class="empty hidden">No topics match your search. Try another keyword or learning level.</p>
+    </section>
+
+    <section id="practice" class="section quiz-banner">
+      <div><span class="eyebrow">TEST YOUR UNDERSTANDING</span><h2>Ready for a quick challenge?</h2><p>Answer 40 mixed Biology questions, then review your score and explanations.</p></div>
+      <button class="btn light" id="startQuiz">Start 40-question quiz <span>→</span></button>
+    </section>
+
+    <section id="progress" class="section progress-section">
+      <div class="section-heading"><div><span class="eyebrow">YOUR LEARNING JOURNEY</span><p id="studentWelcome" class="muted">Welcome to BioLearn</p><h2>My progress</h2></div><button id="resetProgress" class="text-button">Reset progress</button></div>
+      <div class="profile-panel">
+        <div><h3>Student profile</h3><p class="muted">A local profile for this browser. It is not an online account.</p></div>
+        <label for="studentName">Your display name</label>
+        <div class="profile-controls"><input id="studentName" type="text" maxlength="60" placeholder="Enter your name"><button id="saveProfile" class="btn primary">Save profile</button></div>
+        <div class="backup-controls"><button id="exportProgress" class="btn ghost">Export progress backup</button><label class="btn ghost file-label" for="importProgressFile">Import progress backup</label><input id="importProgressFile" type="file" accept="application/json,.json" hidden></div>
+        <p class="muted">Progress stays on this device unless you export a backup and import it on another device.</p>
+      </div>
+      <div class="progress-cards"><article class="metric"><span class="metric-icon">✓</span><div><b id="completedCount">0</b><span>Topics completed</span></div></article><article class="metric"><span class="metric-icon">◎</span><div><b id="quizCount">0</b><span>Quizzes completed</span></div></article><article class="metric"><span class="metric-icon">★</span><div><b id="bestScore">—</b><span>Best quiz score</span></div></article></div>
+      <div class="history-panel"><h3>Recent quiz attempts</h3><div id="quizHistory" class="history-list"><p class="muted">Your completed quizzes will appear here.</p></div></div>
+    </section>
+  </main>
+
+  <footer><a class="brand footer-brand" href="#"><span class="brand-mark">B</span><span>BioLearn<small>LEARN • PRACTISE • GROW</small></span></a><p>Built for curious minds. Keep learning, one topic at a time.</p><span class="footer-note">Learning edition • Progress is stored locally on this device. Online sync is not enabled.</span></footer>
+
+  <dialog id="lessonDialog" class="modal">
+    <div class="modal-head"><div><span class="eyebrow" id="lessonLevel">BIOLOGY LESSON</span><h2 id="lessonTitle">Topic title</h2></div><button class="close-btn" data-close="lessonDialog" aria-label="Close">×</button></div>
+    <div id="lessonContent" class="lesson-content"></div>
+    <div class="modal-actions"><button id="markComplete" class="btn primary">Mark topic complete</button><button id="topicPractice" class="btn ghost">Practise 10 questions</button></div>
+  </dialog>
+
+  <dialog id="quizDialog" class="modal quiz-modal">
+    <div class="modal-head"><div><span class="eyebrow">BIOLOGY CBT</span><h2 id="quizTitle">40-question quiz</h2></div><button class="close-btn" data-close="quizDialog" aria-label="Close quiz">×</button></div>
+    <div id="quizSetup" class="quiz-setup">
+      <p>Choose an exam track and mode. These are original practice questions drawn from senior-secondary Biology topics, not official past questions.</p>
+      <label class="exam-select-label" for="examTrack">Exam track</label>
+      <select id="examTrack" class="exam-track-select">
+        <option value="JAMB">JAMB UTME Biology · 40 questions · 40-minute practice timer</option>
+        <option value="WAEC">WAEC Biology · 50 questions · 60-minute practice timer</option>
+        <option value="NECO">NECO Biology · 50 questions · 60-minute practice timer</option>
+        <option value="MIXED">Mixed Biology · 40 questions · 40-minute practice timer</option>
+      </select>
+      <p id="examTrackHelp" class="exam-track-help">JAMB practice track: 40 questions, 40 minutes in timed mode.</p>
+      <label class="exam-select-label" for="difficultyFilter">Question difficulty</label>
+      <select id="difficultyFilter" class="exam-track-select">
+        <option value="ALL">All difficulties (recommended)</option>
+        <option value="Easy">Easy — build confidence</option>
+        <option value="Medium">Medium — strengthen understanding</option>
+        <option value="Challenging">Challenging — apply concepts</option>
+      </select>
+      <p class="exam-track-help">Difficulty tags are initial estimates based on question wording and topic; they are not official exam classifications. Topic weighting is for practice and is not an official syllabus blueprint.</p>
+      <div class="mode-options"><label><input type="radio" name="quizMode" value="practice" checked><span><b>Practice mode</b><small>No countdown; see feedback after submitting.</small></span></label><label><input type="radio" name="quizMode" value="timed"><span><b>Timed CBT</b><small id="timedModeHelp">JAMB UTME Biology: 40 minutes. Submit when finished or when time runs out.</small></span></label></div><button id="beginQuiz" class="btn primary full">Begin quiz</button></div>
+    <div id="quizPlay" class="hidden"><div class="quiz-meta"><span id="questionProgress">Question 1 of 40</span><span id="quizTimer" class="timer hidden">40:00</span></div><div class="quiz-progress"><span id="quizProgressFill"></span></div><div id="questionArea"></div><div class="quiz-controls"><button id="prevQuestion" class="btn ghost">← Previous</button><button id="nextQuestion" class="btn primary">Next →</button><button id="submitQuiz" class="btn primary hidden">Submit quiz</button></div></div>
+    <div id="quizResult" class="hidden"></div>
+  </dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="js/question-bank.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

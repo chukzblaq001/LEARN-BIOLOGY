@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101c3a"><meta name="description" content="BioLearn local question-bank editor">
+  <title>BioLearn | Question Admin</title><link rel="stylesheet" href="css/style.css"><link rel="icon" href="assets/icon-192.png">
+</head>
+<body>
+  <header class="topbar"><a class="brand" href="index.html"><span class="brand-mark">B</span><span>BioLearn<small>QUESTION ADMIN</small></span></a><nav><a href="index.html">Back to learning</a></nav></header>
+  <main class="admin-shell">
+    <span class="eyebrow">QUESTION BANK TOOL</span><h1>Manage custom questions</h1>
+    <p class="muted">Questions added here are stored in this browser only and will be used by the practice app on this device. This is a local editor, not a secure online admin system. Do not enter passwords or private student information.</p>
+    <section class="admin-panel">
+      <h2 id="formHeading">Add a question</h2>
+      <form id="questionForm">
+        <div class="admin-grid">
+          <div class="admin-field full"><label for="question">Question</label><textarea id="question" required maxlength="1000" placeholder="Write a clear Biology question"></textarea></div>
+          <div class="admin-field"><label for="topic">Topic</label><select id="topic" required></select></div>
+          <div class="admin-field"><label for="difficulty">Difficulty estimate</label><select id="difficulty"><option>Easy</option><option selected>Medium</option><option>Challenging</option></select></div>
+          <div class="admin-field"><label for="optionA">Option A</label><input id="optionA" required maxlength="300"></div>
+          <div class="admin-field"><label for="optionB">Option B</label><input id="optionB" required maxlength="300"></div>
+          <div class="admin-field"><label for="optionC">Option C</label><input id="optionC" required maxlength="300"></div>
+          <div class="admin-field"><label for="optionD">Option D</label><input id="optionD" required maxlength="300"></div>
+          <div class="admin-field"><label for="answer">Correct option</label><select id="answer"><option value="0">A</option><option value="1">B</option><option value="2">C</option><option value="3">D</option></select></div>
+          <div class="admin-field full"><label for="explanation">Explanation</label><textarea id="explanation" required maxlength="1200" placeholder="Explain why the correct option is right"></textarea></div>
+        </div>
+        <div class="admin-actions"><button class="btn primary" type="submit" id="saveQuestion">Save question</button><button class="btn ghost" type="button" id="cancelEdit">Clear form</button></div>
+      </form>
+    </section>
+    <section class="admin-panel">
+      <h2>Your custom questions</h2><div class="admin-actions"><input id="searchQuestions" type="search" placeholder="Search custom questions..." aria-label="Search custom questions"><button id="exportQuestions" class="btn ghost" type="button">Export JSON</button><label class="btn ghost file-label" for="importQuestions">Import JSON</label><input id="importQuestions" type="file" accept="application/json,.json" hidden></div>
+      <p id="questionCount" class="muted">0 custom questions</p><div id="questionList" class="admin-question-list"></div>
+    </section>
+    <section class="admin-panel"><h2>Growing toward 10,000 questions</h2><p class="muted">Use the JSON export/import workflow to build and review a larger bank in batches. Prioritise accurate, syllabus-aligned questions and explanations over automatically generated duplicates. Every imported question should include a unique ID, topicId, question, four options, answer, explanation and difficulty.</p></section>
+  </main>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="js/question-bank.js"></script><script src="js/admin.js"></script>
+</body></html>

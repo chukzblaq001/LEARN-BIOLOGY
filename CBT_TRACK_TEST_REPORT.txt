@@ -1,0 +1,23 @@
+BioLearn CBT Track Upgrade Test Report
+
+Project: 100-topic / 1,000-question Biology learning website
+Added: JAMB UTME, WAEC, NECO and Mixed Biology track selection
+
+Automated checks performed:
+- JavaScript syntax checks for app.js, question-bank.js and service-worker.js
+- Confirmed 100 topics and 1,000 questions in the topic bank
+- Confirmed exam track selector and track configuration exist
+- Confirmed SS1–SS3 exam pool contains enough questions for 50-question WAEC/NECO practice
+- Confirmed service-worker cache version incremented
+- ZIP integrity test
+
+Practice defaults (not a claim about official examination duration):
+- JAMB UTME: 40 questions / 40 minutes
+- WAEC: 50 questions / 60 minutes
+- NECO: 50 questions / 60 minutes
+- Mixed Biology: 40 questions / 40 minutes
+
+Limitations:
+- Full browser click-through was not automated in this environment.
+- Questions are drawn from the existing senior-secondary bank, not official past questions.
+- Topic distribution and content should be reviewed against current JAMB, WAEC and NECO syllabuses by a Biology teacher.

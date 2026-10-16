@@ -1,0 +1,28 @@
+BioLearn — Question Bank Test Report
+Build: 100-topic / 1,000-question milestone
+
+Topics: 100
+Questions: 1000
+Questions per topic: 10
+Unique question IDs: PASS
+Unique question wording: PASS
+Four distinct options per question: PASS
+Correct answer appears exactly once among options: PASS
+Explanation present for every question: PASS
+JavaScript syntax checks: run separately before release
+ZIP integrity: run separately before release
+Browser click-through: not automated in this environment
+
+Topics by level:
+- JSS2: 11 topics / 110 questions
+- JSS3: 6 topics / 60 questions
+- JSS1: 14 topics / 140 questions
+- SS1: 13 topics / 130 questions
+- SS2: 11 topics / 110 questions
+- SS3: 8 topics / 80 questions
+- University 100 Level: 9 topics / 90 questions
+- University 200 Level: 9 topics / 90 questions
+- University 300 Level: 7 topics / 70 questions
+- University 400 Level: 12 topics / 120 questions
+
+Content note: The question bank is a learning milestone. Automated structure checks do not guarantee every distractor is equally strong or that every item matches the latest exam syllabus. Review before formal examination use.
