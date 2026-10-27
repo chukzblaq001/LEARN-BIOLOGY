@@ -1,24 +1,14 @@
 {
-  "name": "BioLearn Biology Learning Hub",
-  "short_name": "BioLearn",
-  "description": "Biology learning from JSS1 to University 400 Level.",
+  "id": "./",
+  "name": "BIOLEARN — Free Offline Biology",
+  "short_name": "BIOLEARN",
+  "description": "Free offline Biology lessons and quizzes for learners in Nigeria.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#f6f8fc",
-  "theme_color": "#101c3a",
+  "background_color": "#fbfdfb",
+  "theme_color": "#18794e",
   "icons": [
-    {
-      "src": "assets/icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "assets/icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any"
-    }
+    {"src":"icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any"}
   ]
 }

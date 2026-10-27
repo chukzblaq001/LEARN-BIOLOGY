@@ -1,54 +1,92 @@
-# BioLearn — Biology Learning Hub
+# BIOLEARN — Free Offline Biology Learning App
 
-## Included in this version
-- 100 Biology topics and 1,000 topic-practice questions (10 per topic).
-- Notes and explanations, topic completion, local progress history and responsive design.
-- JAMB UTME, WAEC, NECO and Mixed Biology practice tracks.
-- Practice mode and timed CBT mode.
-- Difficulty selector: All, Easy, Medium and Challenging. Difficulty labels are first-pass automated estimates, not official exam classifications.
-- Results include topic coverage and difficulty mix for the questions that appeared. This is practice feedback, not an official exam blueprint.
-- 30 additional original scenario-style questions (10 per named exam track) supplement the 1,000 topic-bank questions.
-- PWA manifest, service worker and BioLearn app icons for supported HTTPS hosting.
-- Local student display profile plus progress export/import backup.
-- Local custom-question admin tool (`admin.html`) with add/edit/delete and JSON import/export.
-- Structured lesson layout with learning objectives, note points and a self-check prompt.
+A beginner-friendly Biology learning PWA made with plain HTML, CSS and JavaScript. No paid services or JavaScript frameworks are required.
 
-## Open locally
-1. Download and extract the ZIP.
-2. Open the `BioLearn` folder.
-3. Double-click `index.html` in a modern browser.
-4. Select an exam track, choose a difficulty, select Practice or Timed CBT, and begin.
+## What is included in this starter
 
-## Install on an Android phone
-1. Publish the website over HTTPS (GitHub Pages is suitable).
-2. Open the published BioLearn website in Chrome on your Android phone.
-3. Open Chrome's menu (three dots) and choose **Install app** or **Add to Home screen** if offered.
-4. Follow the prompt. The installed app should use the BioLearn book icon.
-5. If an older version still appears, close and reopen the site, then refresh. The offline cache was updated to `biolearn-v7`.
+- Responsive layout for Android phones and Windows computers
+- Sample lessons spanning JSS 1 through University 400
+- Search and level filters
+- Lesson notes and simple built-in educational diagrams
+- Multiple-choice quizzes with instant marking and explanations
+- Local progress, quiz score and bookmark saving with `localStorage`
+- Offline Biology tutor that searches bundled lesson content (no internet or API key needed)
+- PWA manifest and service worker for offline caching
+- Install button where supported by the browser
 
-## Upload to GitHub Pages
-Upload the contents of this folder to the repository while preserving the `css` and `js` folders. Replace the older files rather than uploading only one file. After publishing, hard-refresh the site; the service-worker cache was updated to `biolearn-v7`. Include the `assets` folder so the app icons load.
+## Run it on your Windows computer
 
-## Important content note
-These are original practice questions, not official past questions. The 30 supplemental scenario questions have authored explanations; the difficulty tags for the larger existing bank are automated first-pass estimates. Have a Biology teacher review content, distractors and alignment with current JAMB, WAEC and NECO syllabuses before relying on it as an exam-preparation authority.
+**Recommended:** Use VS Code with the free Live Server extension.
+
+1. Extract `BIOLEARN.zip` to a folder you can find, such as `Documents/BIOLEARN`.
+2. Open VS Code.
+3. Select **File → Open Folder** and choose the extracted `BIOLEARN` folder.
+4. In the Extensions panel, search for **Live Server** and install it.
+5. Open `index.html`, right-click inside it, and choose **Open with Live Server**.
+6. A browser tab should open. Try a lesson, bookmark a topic and take a quiz.
+
+Do not open `index.html` by double-clicking it if you want to test offline/PWA installation: service workers require `localhost` or HTTPS.
+
+## Test offline on your computer
+
+1. Open the app through Live Server.
+2. Let the page load completely once.
+3. In Chrome, open Developer Tools → Application → Service Workers and check that the service worker is active.
+4. In Developer Tools → Network, select **Offline**, then refresh. The app should load from its cache.
+
+Browser menus can vary. Test offline after each major update.
+
+## Use it on Android
+
+### Local testing
+Your computer's `localhost` address is not automatically accessible from your phone. For the easiest phone install, publish the folder to a free HTTPS static host, such as GitHub Pages, then open the site on Android Chrome. This initial publishing step needs internet.
+
+### Install
+1. Open the hosted HTTPS app in Chrome.
+2. Load it once while online and wait for it to finish.
+3. Open Chrome's three-dot menu.
+4. Choose **Install app** or **Add to Home screen** if shown.
+5. Launch BIOLEARN from the new home-screen icon.
+6. Test it in airplane mode.
+
+PWA install prompts vary by browser/device. Some browsers may display “Add to Home screen” rather than “Install app”.
+
+## Add more lessons and questions
+
+Open `app.js`. Each lesson is one object inside the `LESSONS` array. Give each lesson a unique `id`, a `level`, `title`, `summary`, `sections`, and `quiz` array. A quiz question uses:
+
+```js
+{
+  q: "Your question?",
+  options: ["Option A", "Option B", "Option C", "Option D"],
+  answer: 1,
+  explanation: "Why option B is correct."
+}
+```
+
+The `answer` is a zero-based index: `0` means the first option, `1` the second, and so on. Each included lesson currently has three sample questions. Add more to expand the question bank.
+
+## Offline and privacy notes
+
+- Lesson text and quiz data in this starter are bundled in `app.js`, so they do not require an internet request.
+- Progress is saved in browser `localStorage` on the device/browser profile. Clearing site data may erase it; it does not automatically sync to other devices.
+- The service worker caches the app shell. Increment `CACHE_NAME` in `service-worker.js` when you make changes so browsers can fetch the new version.
+- The app does not currently have online accounts, cloud sync, audio/video downloads or an admin content editor.
+- The sample lessons are a starting point, not a complete authoritative national curriculum. Verify and expand content against current NERDC, WAEC, NECO, JAMB and relevant university syllabuses before presenting the app as comprehensive exam preparation.
+- Use original questions or properly licensed material. Do not upload copyrighted exam papers without permission.
+
+## Folder contents
+
+- `index.html` — page structure
+- `styles.css` — layout and styling
+- `app.js` — lessons, quizzes, progress and interactions
+- `manifest.json` — installable app metadata
+- `service-worker.js` — offline cache
+- `icon.svg` — app icon
 
 
-## Student profiles and progress backup
-- Enter a display name in **My progress** and save it.
-- Use **Export progress backup** to save progress as a JSON file.
-- On another device, open BioLearn and use **Import progress backup** to restore it.
-- This is not cloud sync: browser storage does not automatically transfer between devices. True online accounts and sync require a backend/authentication service and secure deployment configuration.
+## Offline Tutor and real AI
 
-## Admin question editor
-- Open `admin.html` from the website navigation.
-- Add a question, select its topic, enter four different options, choose the correct option and write an explanation.
-- Edit/delete custom questions, or export/import a JSON array of reviewed questions.
-- Custom questions are saved only in that browser. For a public multi-user service, do not treat this local editor as secure admin authentication.
+The built-in tutor answers using the lesson material bundled in `app.js`. It works offline and makes no network requests, but it is a simple local knowledge helper, not a generative AI model.
 
-## Before public release
-1. Publish over HTTPS and test on desktop plus Android Chrome.
-2. Test each JAMB, WAEC, NECO and Mixed track in both practice and timed modes.
-3. Verify progress backup export/import on a second browser/device.
-4. Have a qualified Biology teacher review all question wording, answer keys, explanations and syllabus alignment.
-5. Publish a privacy notice explaining local storage and what information is or is not collected.
-6. For online student accounts, cloud progress sync, and secure remote admin, connect a real backend/authentication provider and configure its access rules. Those server services are not included in this static ZIP.
+For a genuine online AI tutor, connect a provider through a secure server/backend that you control. Do **not** paste a private API key into `app.js` or any file downloaded by the browser; users can inspect those files. Keep the offline tutor as a fallback when there is no internet. Any AI provider may have limits, require an account, or charge for use.
